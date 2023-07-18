@@ -1,0 +1,1005 @@
+{
+  "entity": "completion-certificate-number",
+  "state": [
+    {
+      "id": 51,
+      "counterparty_code": null,
+      "counterparty": "Sonnenschein Карагандинская областная клиника",
+      "number": 20,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:37:52.843Z",
+      "updated_at": "2023-06-01T03:57:24.816Z"
+    },
+    {
+      "id": 28,
+      "counterparty_code": null,
+      "counterparty": "Лохманова ИП",
+      "number": 7,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-29T08:14:22.013Z",
+      "updated_at": "2023-06-22T10:59:50.472Z"
+    },
+    {
+      "id": 71,
+      "counterparty_code": null,
+      "counterparty": "АКНУР ИП",
+      "number": 12,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T09:38:25.196Z",
+      "updated_at": "2023-06-26T04:17:20.904Z"
+    },
+    {
+      "id": 21,
+      "counterparty_code": null,
+      "counterparty": "Уменова Н.К. ИП",
+      "number": 22,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-29T06:49:53.601Z",
+      "updated_at": "2023-06-04T19:52:53.133Z"
+    },
+    {
+      "id": 65,
+      "counterparty_code": null,
+      "counterparty": "Айнаколь-Групп ТОО",
+      "number": 18,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T08:45:05.524Z",
+      "updated_at": "2023-06-16T06:53:38.259Z"
+    },
+    {
+      "id": 31,
+      "counterparty_code": null,
+      "counterparty": "МЕЗИНЕЦ СЕРГЕЙ СТЕПАНОВИЧ ИП",
+      "number": 52,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T04:31:50.794Z",
+      "updated_at": "2023-06-01T03:59:42.095Z"
+    },
+    {
+      "id": 29,
+      "counterparty_code": null,
+      "counterparty": "Булекбаева Г.Ч.  ИП",
+      "number": 48,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T04:28:47.168Z",
+      "updated_at": "2023-06-22T05:24:58.260Z"
+    },
+    {
+      "id": 57,
+      "counterparty_code": null,
+      "counterparty": "Майзель Ш.В. ИП",
+      "number": 10,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T06:51:45.458Z",
+      "updated_at": "2023-06-21T08:09:30.246Z"
+    },
+    {
+      "id": 55,
+      "counterparty_code": null,
+      "counterparty": "Зайцев Роман Владимирович ИП",
+      "number": 13,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T06:50:51.628Z",
+      "updated_at": "2023-06-20T05:28:14.425Z"
+    },
+    {
+      "id": 13,
+      "counterparty_code": null,
+      "counterparty": "Самсонов Е.С. ИП",
+      "number": 150,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T09:44:34.801Z",
+      "updated_at": "2023-06-08T06:22:01.378Z"
+    },
+    {
+      "id": 124,
+      "counterparty_code": null,
+      "counterparty": "Жайык ТОО",
+      "number": 4,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T06:11:29.405Z",
+      "updated_at": "2023-06-05T07:34:17.612Z"
+    },
+    {
+      "id": 80,
+      "counterparty_code": null,
+      "counterparty": "Алгабас Производственный Кооператив",
+      "number": 26,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T04:45:01.164Z",
+      "updated_at": "2023-06-21T08:38:19.004Z"
+    },
+    {
+      "id": 50,
+      "counterparty_code": null,
+      "counterparty": "КГУ ОС детско-юношеская СШ им.Казбека Байболова",
+      "number": 1,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:34:55.607Z",
+      "updated_at": "2023-06-20T10:29:50.911Z"
+    },
+    {
+      "id": 34,
+      "counterparty_code": null,
+      "counterparty": "Карина ИП (Жежиль Карина Аптиевна)",
+      "number": 9,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T04:33:18.125Z",
+      "updated_at": "2023-06-05T07:27:40.196Z"
+    },
+    {
+      "id": 15,
+      "counterparty_code": null,
+      "counterparty": "АвтоЖар ltd ТОО",
+      "number": 41,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T09:45:28.527Z",
+      "updated_at": "2023-06-01T04:00:50.903Z"
+    },
+    {
+      "id": 76,
+      "counterparty_code": null,
+      "counterparty": "Малков Алексей Евгеньевич ИП",
+      "number": 10,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T04:41:43.356Z",
+      "updated_at": "2023-06-26T08:50:31.263Z"
+    },
+    {
+      "id": 58,
+      "counterparty_code": null,
+      "counterparty": "Назарова Е.А. ИП",
+      "number": 8,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T06:52:03.077Z",
+      "updated_at": "2023-06-20T09:41:53.050Z"
+    },
+    {
+      "id": 69,
+      "counterparty_code": null,
+      "counterparty": "ЖК Энергетик-2021 ОСИ г.Астана",
+      "number": 9,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T09:11:12.794Z",
+      "updated_at": "2023-06-05T10:16:25.513Z"
+    },
+    {
+      "id": 47,
+      "counterparty_code": null,
+      "counterparty": "ЕТ ТОО",
+      "number": 8,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:10:09.797Z",
+      "updated_at": "2023-05-30T04:02:54.965Z"
+    },
+    {
+      "id": 61,
+      "counterparty_code": null,
+      "counterparty": "Сулейменова Райса Маратовна ИП",
+      "number": 184,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T08:20:22.857Z",
+      "updated_at": "2023-06-01T03:59:14.244Z"
+    },
+    {
+      "id": 4,
+      "counterparty_code": null,
+      "counterparty": "Цезарь ТОО",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T03:13:22.139Z",
+      "updated_at": "2023-06-01T03:52:32.701Z"
+    },
+    {
+      "id": 10,
+      "counterparty_code": null,
+      "counterparty": "Джусипова Айнура Ахметовна ИП",
+      "number": 4,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T09:39:33.635Z",
+      "updated_at": "2023-05-29T07:14:39.595Z"
+    },
+    {
+      "id": 41,
+      "counterparty_code": null,
+      "counterparty": "Арайлы-2021 ТОО",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:01:08.865Z",
+      "updated_at": "2023-06-21T21:41:07.842Z"
+    },
+    {
+      "id": 23,
+      "counterparty_code": null,
+      "counterparty": "Тойганбай ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-29T06:51:02.664Z",
+      "updated_at": "2023-06-19T09:52:46.463Z"
+    },
+    {
+      "id": 32,
+      "counterparty_code": null,
+      "counterparty": "Кожантаева Х. Ж. ИП",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T04:32:12.067Z",
+      "updated_at": "2023-06-02T03:49:07.985Z"
+    },
+    {
+      "id": 11,
+      "counterparty_code": null,
+      "counterparty": "Бархатова Сарсенкуль Орынхановна ИП",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T09:40:39.434Z",
+      "updated_at": "2023-05-26T09:40:37.150Z"
+    },
+    {
+      "id": 56,
+      "counterparty_code": null,
+      "counterparty": "Халметов Розимат Ирисметович ИП",
+      "number": 12,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T06:51:20.802Z",
+      "updated_at": "2023-06-23T08:55:30.917Z"
+    },
+    {
+      "id": 89,
+      "counterparty_code": null,
+      "counterparty": "ВРЗ-3 ПКССДУ",
+      "number": 31,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T05:00:10.325Z",
+      "updated_at": "2023-06-04T19:56:35.507Z"
+    },
+    {
+      "id": 22,
+      "counterparty_code": null,
+      "counterparty": "Спамбетова Б.Ж. ИП",
+      "number": 189,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-29T06:50:29.679Z",
+      "updated_at": "2023-06-23T08:56:23.281Z"
+    },
+    {
+      "id": 37,
+      "counterparty_code": null,
+      "counterparty": "Абишов Абдурахман Абишович ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T04:40:18.546Z",
+      "updated_at": "2023-06-01T03:46:51.746Z"
+    },
+    {
+      "id": 77,
+      "counterparty_code": null,
+      "counterparty": "Сайфуллаев Фуркат Арматович ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T04:42:07.420Z",
+      "updated_at": "2023-06-15T06:16:24.092Z"
+    },
+    {
+      "id": 52,
+      "counterparty_code": null,
+      "counterparty": "Зубенко Раиса Степановна ИП",
+      "number": 1,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:38:37.573Z",
+      "updated_at": "2023-06-26T03:24:09.296Z"
+    },
+    {
+      "id": 45,
+      "counterparty_code": null,
+      "counterparty": "Дарихожаева Алтын Алиевна ИП",
+      "number": 233,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:08:44.308Z",
+      "updated_at": "2023-06-20T05:27:55.321Z"
+    },
+    {
+      "id": 53,
+      "counterparty_code": null,
+      "counterparty": "BTB Group ИП",
+      "number": 37,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:39:07.617Z",
+      "updated_at": "2023-06-01T03:55:30.661Z"
+    },
+    {
+      "id": 75,
+      "counterparty_code": null,
+      "counterparty": "Наконечная Наталья Анатольевна ИП",
+      "number": 24,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T04:41:20.513Z",
+      "updated_at": "2023-06-26T03:22:12.798Z"
+    },
+    {
+      "id": 30,
+      "counterparty_code": null,
+      "counterparty": "Бейсебаев Сакен Амангельдыевич ",
+      "number": 4,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T04:31:30.380Z",
+      "updated_at": "2023-05-04T08:43:47.234Z"
+    },
+    {
+      "id": 121,
+      "counterparty_code": null,
+      "counterparty": "Таджибаева Гулназ Шакировна ИП",
+      "number": 19,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T07:57:51.322Z",
+      "updated_at": "2023-06-23T09:02:58.192Z"
+    },
+    {
+      "id": 83,
+      "counterparty_code": null,
+      "counterparty": "Карабекова А.Е. ИП",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T04:57:14.520Z",
+      "updated_at": "2023-06-06T05:51:23.034Z"
+    },
+    {
+      "id": 122,
+      "counterparty_code": null,
+      "counterparty": "Тараз- Онерпаз ТОО",
+      "number": 112,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T04:35:57.580Z",
+      "updated_at": "2023-05-25T05:35:22.158Z"
+    },
+    {
+      "id": 39,
+      "counterparty_code": null,
+      "counterparty": "Каюпова Галия Аарыктаевна ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T04:44:48.537Z",
+      "updated_at": "2023-06-21T21:39:10.744Z"
+    },
+    {
+      "id": 2,
+      "counterparty_code": null,
+      "counterparty": "Расулов Александр Камилович ИП",
+      "number": 7,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T03:02:35.203Z",
+      "updated_at": "2023-06-26T03:31:39.794Z"
+    },
+    {
+      "id": 48,
+      "counterparty_code": null,
+      "counterparty": "Ли А.Б. ИП ",
+      "number": 42,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:30:25.201Z",
+      "updated_at": "2023-06-01T03:56:57.957Z"
+    },
+    {
+      "id": 70,
+      "counterparty_code": null,
+      "counterparty": "БЕТОН-СЕМЕЙ ТОО",
+      "number": 10,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T09:29:08.602Z",
+      "updated_at": "2023-06-01T03:54:35.335Z"
+    },
+    {
+      "id": 81,
+      "counterparty_code": null,
+      "counterparty": "ТУРСУНШИКОВ ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T04:56:24.431Z",
+      "updated_at": "2023-06-22T11:01:00.786Z"
+    },
+    {
+      "id": 27,
+      "counterparty_code": null,
+      "counterparty": "Жуматаев Мухамедяр Аллаярович ИП",
+      "number": 4,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-29T08:13:57.665Z",
+      "updated_at": "2023-04-26T08:55:11.779Z"
+    },
+    {
+      "id": 100,
+      "counterparty_code": null,
+      "counterparty": "Кооптранс ТОО",
+      "number": 24,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T06:10:31.550Z",
+      "updated_at": "2023-06-02T03:47:37.207Z"
+    },
+    {
+      "id": 40,
+      "counterparty_code": null,
+      "counterparty": "Серов В.Р. ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T04:45:10.964Z",
+      "updated_at": "2023-06-26T03:27:57.368Z"
+    },
+    {
+      "id": 8,
+      "counterparty_code": null,
+      "counterparty": "ИП Мусаиева",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T09:38:26.271Z",
+      "updated_at": "2023-06-26T03:34:38.580Z"
+    },
+    {
+      "id": 19,
+      "counterparty_code": null,
+      "counterparty": "Крыкбаев Шакирбай Оскинбаевич  ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-29T04:19:17.319Z",
+      "updated_at": "2023-05-29T05:14:43.757Z"
+    },
+    {
+      "id": 25,
+      "counterparty_code": null,
+      "counterparty": "Астанастройсервис-1 ТОО",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-29T08:12:57.120Z",
+      "updated_at": "2023-06-13T10:37:11.665Z"
+    },
+    {
+      "id": 14,
+      "counterparty_code": null,
+      "counterparty": "Бердалиев А.К ИП",
+      "number": 28,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T09:45:03.181Z",
+      "updated_at": "2023-05-15T05:57:22.138Z"
+    },
+    {
+      "id": 63,
+      "counterparty_code": null,
+      "counterparty": "Пралиева Халила Аскаровна  ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T08:21:06.375Z",
+      "updated_at": "2023-06-26T08:49:56.177Z"
+    },
+    {
+      "id": 26,
+      "counterparty_code": null,
+      "counterparty": "Зандаров Х.Н. ИП",
+      "number": 1,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-29T08:13:44.125Z",
+      "updated_at": "2023-06-23T09:03:16.829Z"
+    },
+    {
+      "id": 54,
+      "counterparty_code": null,
+      "counterparty": "Сарсембаев Батырхан ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:39:30.195Z",
+      "updated_at": "2023-06-21T08:09:51.964Z"
+    },
+    {
+      "id": 78,
+      "counterparty_code": null,
+      "counterparty": "Rich Service ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T04:42:26.202Z",
+      "updated_at": "2023-06-26T03:29:11.880Z"
+    },
+    {
+      "id": 49,
+      "counterparty_code": null,
+      "counterparty": "Курманбай Жаннат Серикжанулы ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:34:17.401Z",
+      "updated_at": "2023-06-21T07:57:57.126Z"
+    },
+    {
+      "id": 36,
+      "counterparty_code": null,
+      "counterparty": "Кажет КСК и НП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T04:35:27.182Z",
+      "updated_at": "2023-06-15T06:16:00.879Z"
+    },
+    {
+      "id": 67,
+      "counterparty_code": null,
+      "counterparty": "Жеманбалина Мадина Шалкаровна ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T08:45:55.796Z",
+      "updated_at": "2023-06-23T09:03:08.719Z"
+    },
+    {
+      "id": 18,
+      "counterparty_code": null,
+      "counterparty": "САДВАКАСОВА КАМА АШУОВНА ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-29T04:13:02.185Z",
+      "updated_at": "2023-06-22T10:56:25.304Z"
+    },
+    {
+      "id": 149,
+      "counterparty_code": null,
+      "counterparty": "Лигай Елена Михайловна ИП",
+      "number": 8,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T11:23:22.138Z",
+      "updated_at": "2023-06-14T04:25:52.008Z"
+    },
+    {
+      "id": 6,
+      "counterparty_code": null,
+      "counterparty": "Конирбаев ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T09:36:53.385Z",
+      "updated_at": "2023-06-26T03:31:27.384Z"
+    },
+    {
+      "id": 5,
+      "counterparty_code": null,
+      "counterparty": "Мамедова ИП",
+      "number": 3,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T09:36:43.907Z",
+      "updated_at": "2023-05-18T10:21:33.116Z"
+    },
+    {
+      "id": 66,
+      "counterparty_code": null,
+      "counterparty": "Валентина ТОО",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T08:45:31.130Z",
+      "updated_at": "2023-06-22T10:53:09.151Z"
+    },
+    {
+      "id": 46,
+      "counterparty_code": null,
+      "counterparty": "КУЧАРОВ ОЗОДБЕК ЖИЯНОВИЧ ИП",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:09:50.372Z",
+      "updated_at": "2023-06-26T03:25:59.218Z"
+    },
+    {
+      "id": 20,
+      "counterparty_code": null,
+      "counterparty": "Кауметова Жаныл Гаппаровна ИП",
+      "number": 23,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-29T06:48:35.732Z",
+      "updated_at": "2023-05-12T01:04:43.191Z"
+    },
+    {
+      "id": 42,
+      "counterparty_code": null,
+      "counterparty": "Шеберхана-Агро ТОО",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:02:03.763Z",
+      "updated_at": "2023-06-22T11:01:12.449Z"
+    },
+    {
+      "id": 79,
+      "counterparty_code": null,
+      "counterparty": "Ажибеков Е.Н ИП",
+      "number": 10,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T04:43:55.712Z",
+      "updated_at": "2023-06-26T03:30:30.374Z"
+    },
+    {
+      "id": 33,
+      "counterparty_code": null,
+      "counterparty": "Кашкинбаева О.У. ИП",
+      "number": 125,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T04:32:36.621Z",
+      "updated_at": "2023-06-01T06:30:48.127Z"
+    },
+    {
+      "id": 64,
+      "counterparty_code": null,
+      "counterparty": "Кызылжарский районный дом культуры ГККП",
+      "number": 1,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T08:43:33.197Z",
+      "updated_at": "2023-06-01T06:28:23.414Z"
+    },
+    {
+      "id": 60,
+      "counterparty_code": null,
+      "counterparty": "Павлодаршина ТОО",
+      "number": 9,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T08:19:53.097Z",
+      "updated_at": "2023-06-01T03:42:56.628Z"
+    },
+    {
+      "id": 17,
+      "counterparty_code": null,
+      "counterparty": "Озал ИП",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T09:46:14.288Z",
+      "updated_at": "2023-06-21T07:59:43.805Z"
+    },
+    {
+      "id": 82,
+      "counterparty_code": null,
+      "counterparty": "Алинуржан ИП ",
+      "number": 87,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T04:56:55.400Z",
+      "updated_at": "2023-06-19T04:57:32.541Z"
+    },
+    {
+      "id": 43,
+      "counterparty_code": null,
+      "counterparty": "Маутканов А.И. ИП",
+      "number": 11,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:02:56.475Z",
+      "updated_at": "2023-06-21T07:52:28.164Z"
+    },
+    {
+      "id": 9,
+      "counterparty_code": null,
+      "counterparty": "СЕЙТЖАНОВА ИМАЯТ КАЗИЕВНА",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T09:39:14.288Z",
+      "updated_at": "2023-05-26T01:52:25.109Z"
+    },
+    {
+      "id": 16,
+      "counterparty_code": null,
+      "counterparty": "Оразбаев М.Х. ИП",
+      "number": 134,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T09:45:50.371Z",
+      "updated_at": "2023-06-22T10:54:01.015Z"
+    },
+    {
+      "id": 73,
+      "counterparty_code": null,
+      "counterparty": "Жабагина Д.К. ИП ",
+      "number": 42,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T04:37:27.350Z",
+      "updated_at": "2023-06-02T03:36:40.651Z"
+    },
+    {
+      "id": 125,
+      "counterparty_code": null,
+      "counterparty": "Измагамбетова Ж.К ИП",
+      "number": 104,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T11:02:37.516Z",
+      "updated_at": "2023-06-01T03:55:57.949Z"
+    },
+    {
+      "id": 7,
+      "counterparty_code": null,
+      "counterparty": "МЕЙРАМБЕК ИП",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-28T09:37:53.086Z",
+      "updated_at": "2023-06-18T16:35:45.894Z"
+    },
+    {
+      "id": 72,
+      "counterparty_code": null,
+      "counterparty": "Танкибаева М.Е. ИП",
+      "number": 20,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T10:07:43.300Z",
+      "updated_at": "2023-05-29T07:13:48.546Z"
+    },
+    {
+      "id": 44,
+      "counterparty_code": null,
+      "counterparty": "Макажанова ИП",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-09-30T05:04:24.850Z",
+      "updated_at": "2023-06-12T09:57:29.528Z"
+    },
+    {
+      "id": 102,
+      "counterparty_code": null,
+      "counterparty": "Казмирчук ИП",
+      "number": 52,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T06:20:59.317Z",
+      "updated_at": "2023-04-03T04:59:05.372Z"
+    },
+    {
+      "id": 134,
+      "counterparty_code": null,
+      "counterparty": "Убажан Мурат ИП",
+      "number": 53,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T11:13:53.638Z",
+      "updated_at": "2023-06-04T19:54:33.698Z"
+    },
+    {
+      "id": 95,
+      "counterparty_code": null,
+      "counterparty": "Асемай ИП",
+      "number": 25,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T05:55:21.944Z",
+      "updated_at": "2023-06-07T04:04:59.214Z"
+    },
+    {
+      "id": 129,
+      "counterparty_code": null,
+      "counterparty": "Анар ИП",
+      "number": 19,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T11:07:05.395Z",
+      "updated_at": "2023-06-04T19:54:06.696Z"
+    },
+    {
+      "id": 164,
+      "counterparty_code": null,
+      "counterparty": "БЕРДИЕВ АМАНГАЛИ МАРАТОВИЧ ИП",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T11:33:59.002Z",
+      "updated_at": "2023-06-01T03:37:09.448Z"
+    },
+    {
+      "id": 155,
+      "counterparty_code": null,
+      "counterparty": "Хайруллин Берикхан Серикович ИП",
+      "number": 11,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T11:29:30.255Z",
+      "updated_at": "2023-06-26T06:12:00.910Z"
+    },
+    {
+      "id": 97,
+      "counterparty_code": null,
+      "counterparty": "Фонд Развития Культуры ОФ",
+      "number": 9,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T05:59:42.987Z",
+      "updated_at": "2023-06-02T04:01:34.002Z"
+    },
+    {
+      "id": 152,
+      "counterparty_code": null,
+      "counterparty": "Кенжеханова Замзагуль Казиевна ИП",
+      "number": 61,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T11:27:44.069Z",
+      "updated_at": "2023-06-09T21:06:21.420Z"
+    },
+    {
+      "id": 127,
+      "counterparty_code": null,
+      "counterparty": "Кенжеханов Канат Казиевич ИП",
+      "number": 34,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T11:03:51.984Z",
+      "updated_at": "2023-06-07T04:05:34.586Z"
+    },
+    {
+      "id": 103,
+      "counterparty_code": null,
+      "counterparty": "Токлаев Азизбек Исмиханович ИП",
+      "number": 1,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T06:21:39.816Z",
+      "updated_at": "2023-06-01T04:12:12.079Z"
+    },
+    {
+      "id": 87,
+      "counterparty_code": null,
+      "counterparty": "Химик-Садовод",
+      "number": 1,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T04:59:01.634Z",
+      "updated_at": "2023-05-26T09:41:21.253Z"
+    },
+    {
+      "id": 138,
+      "counterparty_code": null,
+      "counterparty": "Мирель ИП",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T11:15:23.438Z",
+      "updated_at": "2023-05-10T04:14:53.558Z"
+    },
+    {
+      "id": 90,
+      "counterparty_code": null,
+      "counterparty": "Подопригора Оксана Николаевна ИП",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T05:00:29.258Z",
+      "updated_at": "2023-06-02T04:05:59.364Z"
+    },
+    {
+      "id": 98,
+      "counterparty_code": null,
+      "counterparty": "Lider SPB Company ТОО",
+      "number": 36,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T06:06:27.062Z",
+      "updated_at": "2023-06-26T06:12:59.356Z"
+    },
+    {
+      "id": 107,
+      "counterparty_code": null,
+      "counterparty": "Райгул ИП",
+      "number": 2,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T06:23:56.261Z",
+      "updated_at": "2023-03-17T08:56:29.567Z"
+    },
+    {
+      "id": 99,
+      "counterparty_code": null,
+      "counterparty": "Байрамова Гульбаяз Сариевна ИП",
+      "number": 5,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T06:09:47.799Z",
+      "updated_at": "2023-05-26T09:40:47.486Z"
+    },
+    {
+      "id": 160,
+      "counterparty_code": null,
+      "counterparty": "Искакова З.К. ИП",
+      "number": 10,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T11:32:13.065Z",
+      "updated_at": "2023-06-06T05:47:52.334Z"
+    },
+    {
+      "id": 241,
+      "counterparty_code": null,
+      "counterparty": "Универсал ПКСК",
+      "number": 6,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-12T08:36:16.659Z",
+      "updated_at": "2023-06-01T04:02:16.537Z"
+    },
+    {
+      "id": 96,
+      "counterparty_code": null,
+      "counterparty": "КГП Детская больница г.Караганда",
+      "number": 54,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-03T05:55:48.976Z",
+      "updated_at": "2023-06-02T04:02:01.705Z"
+    },
+    {
+      "id": 158,
+      "counterparty_code": null,
+      "counterparty": "Абугалиев Бауыржан Мухтарович ИП",
+      "number": 10,
+      "created_by": null,
+      "updated_by": null,
+      "created_at": "2022-10-04T11:30:32.865Z",
+      "updated_at": "2023-06-26T03:31:05.843Z"
+    }
+  ]
+}
