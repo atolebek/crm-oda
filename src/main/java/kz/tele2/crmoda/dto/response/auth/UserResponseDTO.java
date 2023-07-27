@@ -2,6 +2,7 @@ package kz.tele2.crmoda.dto.response.auth;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import kz.tele2.crmoda.model.User;
@@ -10,6 +11,7 @@ import kz.tele2.crmoda.model.Role;
 
 @Data
 public class UserResponseDTO {
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @ApiModelProperty(position = 0)
   private String jwt;
   @ApiModelProperty(position = 1)

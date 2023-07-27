@@ -36,19 +36,6 @@ public class UserService {
   private final ModelMapper modelMapper;
   private final RoleRepository roleRepository;
 
-  public UserResponseDTO localLogin(String username, String password) {
-    try {
-      authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-      User user = userRepository.findByUsername(username);
-      String jwtToken = jwtTokenProvider.createToken(username, user.getRoles());
-      UserResponseDTO response = modelMapper.map(user, UserResponseDTO.class);
-      response.setJwt(jwtToken);
-      return response;
-    } catch (AuthenticationException e) {
-      throw new CustomException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
-    }
-  }
-
   public UserResponseDTO signup(UserDataDTO createUserRequest) {
     if (!userRepository.existsByUsername(createUserRequest.getUsername())) {
       List<Role> roles = roleRepository.findAllByNameIn(createUserRequest.getRoles());
@@ -80,8 +67,8 @@ public class UserService {
     return userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
   }
 
-  public String refresh(String username) {
-    return jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getRoles());
+  public List<User> getAllUsers() {
+    return userRepository.getAllUsers();
   }
 
 }

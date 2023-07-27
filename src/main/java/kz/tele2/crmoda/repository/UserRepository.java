@@ -5,6 +5,9 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import kz.tele2.crmoda.model.User;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
@@ -14,5 +17,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   @Transactional
   void deleteByUsername(String username);
+
+  @Query("SELECT u FROM User u")
+  List<User> getAllUsers();
 
 }
