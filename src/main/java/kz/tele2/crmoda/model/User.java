@@ -35,9 +35,8 @@ public class User {
   @Column(unique = false, nullable = false)
   private Boolean blocked = false;
 
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.DETACH})
   @JoinTable(name = "app_user_role", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "roleid"))
-  @Cascade(org.hibernate.annotations.CascadeType.ALL)
   private List<Role> roles;
 
   @Column

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @Secured("ROLE_ADMIN")
 @RequestMapping("/roles")
@@ -40,6 +42,10 @@ public class RoleController {
 
         Role newRole = new Role(request.getName(), request.getDescription(), request.getType());
         return roleRepository.save(newRole);
+    }
+
+    public List<Role> getAllRoles(){
+        return roleRepository.getAll();
     }
 
 //    public Role deleteRole(){

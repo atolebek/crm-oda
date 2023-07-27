@@ -1,6 +1,7 @@
 package kz.tele2.crmoda.service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import kz.tele2.crmoda.dto.request.auth.UserDataDTO;
 import kz.tele2.crmoda.dto.response.auth.UserResponseDTO;
@@ -60,7 +61,10 @@ public class UserService {
     }
   }
 
+  @Transactional
   public void delete(String username) {
+    User user = userRepository.findByUsername(username);
+    roleRepository.deleteAllUserRoles(user.getId());
     userRepository.deleteByUsername(username);
   }
 
