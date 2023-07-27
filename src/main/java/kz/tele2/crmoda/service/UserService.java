@@ -40,24 +40,8 @@ public class UserService {
       authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
       User user = userRepository.findByUsername(username);
       String jwtToken = jwtTokenProvider.createToken(username, user.getRoles());
-      UserResponseDTO response = new UserResponseDTO();
-      List<Role> roles = new ArrayList<>();
-      Role r1 = new Role("ROLE_ADMIN");
-      roles.add(r1);
+      UserResponseDTO response = modelMapper.map(user, UserResponseDTO.class);
       response.setJwt(jwtToken);
-      response.setId(user.getId());
-      response.setUsername(user.getUsername());
-      response.setEmail(user.getEmail());
-      response.setConfirmed(user.getConfirmed());
-      response.setBlocked(user.getBlocked());
-      response.setRoles(user.getRoles());
-      response.setName(user.getName());
-      response.setCurator(null);
-      response.setTermsOfUse(null);
-      response.setElectricities(null);
-      response.setIsEntity(false);
-      response.setPhoneNumber("+77077077007");
-      response.setEmployeeCurator(null);
       return response;
     } catch (AuthenticationException e) {
       throw new CustomException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
