@@ -2,6 +2,7 @@ package kz.tele2.crmoda.controller.client;
 
 import io.swagger.annotations.Api;
 import kz.tele2.crmoda.dto.response.rent.ClientRentsResponse;
+import kz.tele2.crmoda.model.Rent;
 import kz.tele2.crmoda.service.rent.RentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
@@ -25,6 +26,13 @@ public class ClientRentsController {
     public List<ClientRentsResponse> getRents(){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return rentService.getClientsRents(username);
+    }
+
+    @GetMapping("/{rentId}")
+    @Secured("ROLE_CLIENT")
+    public Rent getSignedRent() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return null;
     }
 
 }

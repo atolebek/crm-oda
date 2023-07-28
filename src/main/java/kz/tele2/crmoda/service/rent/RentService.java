@@ -10,4 +10,6 @@ public interface RentService {
 
     List<ClientRentsResponse> getClientsRents(String username);
 
+
+
 }
