@@ -1,10 +1,11 @@
 package kz.tele2.crmoda.controller.client;
 
 import io.swagger.annotations.Api;
+import kz.tele2.crmoda.dto.request.rent.SignRentRequest;
 import kz.tele2.crmoda.dto.response.rent.ClientRentsResponse;
 import kz.tele2.crmoda.dto.response.rent.ClientSignedRentResponse;
 import kz.tele2.crmoda.model.Rent;
-import kz.tele2.crmoda.service.rent.RentService;
+import kz.tele2.crmoda.service.rent.ClientRentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClientRentsController {
 
-    private final RentService rentService;
+    private final ClientRentService rentService;
 
     @GetMapping
     @Secured("ROLE_CLIENT")
@@ -35,8 +36,8 @@ public class ClientRentsController {
     }
 
     @PostMapping("/sign")
-    public void signRentContract(String request) {
-        
+    public List<Rent> signRentContract(SignRentRequest request) {
+        return rentService.signRent(request);
     }
 
 }

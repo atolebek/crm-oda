@@ -1,19 +1,23 @@
 package kz.tele2.crmoda.service.impl.rent;
 
+import kz.tele2.crmoda.dto.request.rent.SignRentRequest;
 import kz.tele2.crmoda.dto.response.rent.ClientRentsResponse;
 import kz.tele2.crmoda.dto.response.rent.ClientSignedRentResponse;
+import kz.tele2.crmoda.enums.ApplicationName;
+import kz.tele2.crmoda.enums.ApplicationType;
+import kz.tele2.crmoda.enums.UserType;
 import kz.tele2.crmoda.exception.CustomException;
+import kz.tele2.crmoda.model.Application;
 import kz.tele2.crmoda.model.Rent;
 import kz.tele2.crmoda.model.User;
 import kz.tele2.crmoda.model.onec.Condition;
 import kz.tele2.crmoda.model.onec.Counterparty;
-import kz.tele2.crmoda.repository.ConditionRepository;
-import kz.tele2.crmoda.repository.CounterpartyRepository;
-import kz.tele2.crmoda.repository.RentRepository;
-import kz.tele2.crmoda.repository.UserRepository;
-import kz.tele2.crmoda.service.rent.RentService;
+import kz.tele2.crmoda.model.onec.Site;
+import kz.tele2.crmoda.repository.*;
+import kz.tele2.crmoda.service.rent.ClientRentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -25,12 +29,14 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class RentServiceImpl implements RentService {
+public class ClientRentServiceImpl implements ClientRentService {
 
     private final UserRepository userRepository;
     private final CounterpartyRepository counterpartyRepository;
     private final ConditionRepository conditionRepository;
     private final RentRepository rentRepository;
+    private final SiteRepository siteRepository;
+    private final ApplicationRepository applicationRepository;
 
     @Override
     public List<ClientRentsResponse> getClientsRents(String username) {
@@ -113,6 +119,82 @@ public class RentServiceImpl implements RentService {
                 .createdAt(rent.getCreatedAt())
                 .signedPdf(rent.getApplication().getSignedPdf())
                 .build();
+        return response;
+    }
+
+    @Override
+    public List<Rent> signRent(SignRentRequest request) {
+        List<Rent> response = new ArrayList<>();
+        LocalDate startDate = request.getStartDate();
+        LocalDate endDate = request.getEndDate();
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User u = userRepository.findByUsername(username);
+
+        Counterparty counterparty = counterpartyRepository.findByName(u.getName());
+
+        Site site = siteRepository.getSiteByName(request.getSiteName());
+
+        Condition condition = conditionRepository.getConditionForSignRent(request.getContractCode(), site, counterparty);
+
+        List<LocalDate> dateRange = new ArrayList<>();
+
+        while (startDate.isBefore(endDate)) {
+            dateRange.add(startDate);
+            startDate = startDate.plusMonths(1);
+        }
+
+        List<Rent> existingRents = rentRepository.findAllSignedRents(counterparty, site, request.getContractCode(), dateRange);
+
+        List<LocalDate> existingDates = existingRents.stream()
+                .map(r -> r.getStartDate())
+                .collect(Collectors.toList());
+        dateRange.removeAll(existingDates);
+
+        UserType userType = u.getIsEntity() ? UserType.JURIDICAL : UserType.INDIVIDUAL;
+        for (LocalDate newRentDate : dateRange) {
+            LocalDate newRentEndDate = newRentDate.withDayOfMonth(newRentDate.lengthOfMonth());
+            LocalDate pdfDate = u.getIsEntity() ? endDate : LocalDate.now();
+
+                    Application application =
+                    applicationRepository.save(
+                            Application.builder()
+                            .applicationName(userType == UserType.JURIDICAL ?
+                                            ApplicationName.COMPLETION_CERTIFICATE.name().toLowerCase()
+                                            : ApplicationName.ACTUAL_AREA_USAGE_ACT.name().toLowerCase())
+                            .signedByClient(true)
+                            .signedByManager(false)
+                            .syncedWith1C(false)
+                            .counterparty(counterparty)
+                            .pdfDate(pdfDate)
+                            .hash("ABCDEF")
+                            .unsignedPdf("UNSIGNED_LINK")
+                            .unsignedName("UNSIGNED_NAME")
+                            .signedPdf("SIGNED_LINK")
+                            .signedName("SIGNED_NAME")
+                            .conditionType(ApplicationType.RENT.name().toLowerCase())
+                            .build());
+                    Rent rent =
+                    rentRepository.save(
+                            Rent.builder()
+                                    .site(site)
+                                    .hasError(false)
+                                    .errorMessage(null)
+                                    .archived(false)
+                                    .status("NEW")
+                                    .onCompletion(false)
+                                    .employee(u.getCurator())
+                                    .application(application)
+                                    .group_id(null)
+                                    .startDate(newRentDate)
+                                    .endDate(newRentEndDate)
+                                    .totalSum(condition.getSum_1() == null ? condition.getSum_2() : condition.getSum_1())
+                                    .userType(userType.name())
+                                    .build()
+                    );
+                    response.add(rent);
+        }
         return response;
     }
 }

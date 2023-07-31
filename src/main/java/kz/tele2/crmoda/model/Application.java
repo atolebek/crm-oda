@@ -1,6 +1,10 @@
 package kz.tele2.crmoda.model;
 
+import kz.tele2.crmoda.model.onec.Counterparty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -8,6 +12,9 @@ import java.time.LocalDate;
 @Entity
 @Data
 @Table(name = "applications")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Application {
 
     @Id
@@ -30,7 +37,7 @@ public class Application {
 
     private String hash;
 
-    private String counterpartyId;//TODO foreign key
+    private Counterparty counterparty;//TODO foreign key
 
     private LocalDate pdfDate;
 

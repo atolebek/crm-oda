@@ -2,7 +2,10 @@ package kz.tele2.crmoda.model;
 
 import kz.tele2.crmoda.model.onec.Counterparty;
 import kz.tele2.crmoda.model.onec.Site;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,6 +15,9 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "rents")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Rent {
 
     @Id
