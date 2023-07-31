@@ -36,7 +36,7 @@ public class ClientRentsController {
 
     @PostMapping("/sign")
     public void signRentContract(String request) {
-
+        
     }
 
 }

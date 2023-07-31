@@ -26,7 +26,7 @@ security:
   jwt:
     token:
       secret-key: i_am_not_in_danger_i_am_the_danger
-      expire-length: 300000 #5*60*1000
+      expire-length: 86400000 #5*60*1000
       
 UserController:
   signin: Authenticates user and returns its JWT token.
