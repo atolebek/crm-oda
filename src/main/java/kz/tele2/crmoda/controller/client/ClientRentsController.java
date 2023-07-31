@@ -2,14 +2,13 @@ package kz.tele2.crmoda.controller.client;
 
 import io.swagger.annotations.Api;
 import kz.tele2.crmoda.dto.response.rent.ClientRentsResponse;
+import kz.tele2.crmoda.dto.response.rent.ClientSignedRentResponse;
 import kz.tele2.crmoda.model.Rent;
 import kz.tele2.crmoda.service.rent.RentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,9 +29,14 @@ public class ClientRentsController {
 
     @GetMapping("/{rentId}")
     @Secured("ROLE_CLIENT")
-    public Rent getSignedRent() {
+    public ClientSignedRentResponse getSignedRent(@PathVariable("rentId") Long rentId) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return null;
+        return rentService.getSignedRent(rentId);
+    }
+
+    @PostMapping("/sign")
+    public void signRentContract(String request) {
+
     }
 
 }

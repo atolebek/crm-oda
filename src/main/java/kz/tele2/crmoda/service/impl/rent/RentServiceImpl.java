@@ -1,6 +1,8 @@
 package kz.tele2.crmoda.service.impl.rent;
 
 import kz.tele2.crmoda.dto.response.rent.ClientRentsResponse;
+import kz.tele2.crmoda.dto.response.rent.ClientSignedRentResponse;
+import kz.tele2.crmoda.exception.CustomException;
 import kz.tele2.crmoda.model.Rent;
 import kz.tele2.crmoda.model.User;
 import kz.tele2.crmoda.model.onec.Condition;
@@ -11,6 +13,7 @@ import kz.tele2.crmoda.repository.RentRepository;
 import kz.tele2.crmoda.repository.UserRepository;
 import kz.tele2.crmoda.service.rent.RentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -92,5 +95,24 @@ public class RentServiceImpl implements RentService {
             }
         }
         return responses;
+    }
+
+    @Override
+    public ClientSignedRentResponse getSignedRent(Long rentId) {
+        Rent rent = rentRepository.getById(rentId);
+        if (rent == null) {
+            throw new CustomException("Rent with ID " + rentId + "does not exist", HttpStatus.NOT_FOUND);
+        }
+        ClientSignedRentResponse response = ClientSignedRentResponse.builder()
+                .id(rent.getId())
+                .contractCode(rent.getContractCode())
+                .siteName(rent.getSite().getName())
+                .startDate(rent.getStartDate())
+                .counterpartyName(rent.getCounterparty().getName())
+                .totalSum(rent.getTotalSum())
+                .createdAt(rent.getCreatedAt())
+                .signedPdf(rent.getApplication().getSignedPdf())
+                .build();
+        return response;
     }
 }

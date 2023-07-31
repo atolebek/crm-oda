@@ -7,6 +7,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -43,9 +44,9 @@ public class Rent {
 
     private int updatedBy;//TODO FOREIGN
 
-    private LocalDate createdAt;//
+    private LocalDateTime createdAt;//
 
-    private LocalDate updatedAt;//
+    private LocalDateTime updatedAt;//
 
     private int employee;//TODO FOREIGN USER
 
