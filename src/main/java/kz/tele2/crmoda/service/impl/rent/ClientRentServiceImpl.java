@@ -81,7 +81,7 @@ public class ClientRentServiceImpl implements ClientRentService {
                     ClientRentsResponse rentsResponse = ClientRentsResponse.builder()
                             .startDate(l)
                             .contractCode(c.getContract_code())
-                            .siteId(c.getSite().getId())
+                            .siteName(c.getSite().getName())
                             .totalSum(c.getSum_1())
                             .signed(false)
                             .build();
@@ -93,7 +93,7 @@ public class ClientRentServiceImpl implements ClientRentService {
                         .id(r.getId())
                         .startDate(r.getStartDate())
                         .contractCode(r.getContractCode())
-                        .siteId(r.getSite().getId())
+                        .siteName(r.getSite().getName())
                         .totalSum(r.getTotalSum())
                         .signed(true)
                         .build();

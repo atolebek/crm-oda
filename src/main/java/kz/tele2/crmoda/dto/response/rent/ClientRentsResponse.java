@@ -16,8 +16,8 @@ public class ClientRentsResponse {
     @JsonProperty("contract_code")
     private String contractCode;
 
-    @JsonProperty("site_id")
-    private Long siteId;
+    @JsonProperty("site_name")
+    private String siteName;
 
     @JsonProperty("start_date")
     private LocalDate startDate;
