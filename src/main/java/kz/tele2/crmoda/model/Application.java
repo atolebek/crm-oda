@@ -37,6 +37,7 @@ public class Application {
 
     private String hash;
 
+    @ManyToOne
     private Counterparty counterparty;//TODO foreign key
 
     private LocalDate pdfDate;
@@ -47,7 +48,8 @@ public class Application {
 
     private String conditionType;//TODO enum
 
-    private String rentId;//TODO foreign key
+    @OneToOne
+    private Rent rent;//TODO foreign key
 
     private String electricityId;//TODO foreign key
 
