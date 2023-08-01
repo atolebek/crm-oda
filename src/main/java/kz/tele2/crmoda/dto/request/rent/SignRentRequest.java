@@ -1,5 +1,6 @@
 package kz.tele2.crmoda.dto.request.rent;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -15,10 +16,13 @@ public class SignRentRequest {
     private String contractCode;
 
     @JsonProperty("start_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
     @JsonProperty("end_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
+    @JsonProperty("userDefinedUniqueCompletionCertificateId")
     private String userDefinedUniqueCompletionCertificateId;
 }

@@ -36,7 +36,7 @@ public class ClientRentsController {
     }
 
     @PostMapping("/sign")
-    public List<Rent> signRentContract(SignRentRequest request) {
+    public List<Rent> signRentContract(@RequestBody SignRentRequest request) {
         return rentService.signRent(request);
     }
 
