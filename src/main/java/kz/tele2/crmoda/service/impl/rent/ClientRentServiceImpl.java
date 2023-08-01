@@ -174,6 +174,7 @@ public class ClientRentServiceImpl implements ClientRentService {
                             .signedPdf("SIGNED_LINK")
                             .signedName("SIGNED_NAME")
                             .conditionType(ApplicationType.RENT.name().toLowerCase())
+                            .applicationId(request.getUserDefinedUniqueCompletionCertificateId())
                             .build());
                     Rent rent =
                     rentRepository.save(
@@ -191,8 +192,12 @@ public class ClientRentServiceImpl implements ClientRentService {
                                     .endDate(newRentEndDate)
                                     .totalSum(condition.getSum_1() == null ? condition.getSum_2() : condition.getSum_1())
                                     .userType(userType.name())
+                                    .contractCode(condition.getContract_code())
+                                    .counterparty(counterparty)
                                     .build()
                     );
+                    application.setRent(rent);
+                    applicationRepository.save(application);
                     response.add(rent);
         }
         return response;

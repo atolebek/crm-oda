@@ -1,5 +1,6 @@
 package kz.tele2.crmoda.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kz.tele2.crmoda.model.onec.Counterparty;
 import kz.tele2.crmoda.model.onec.Site;
 import lombok.AllArgsConstructor;
@@ -69,6 +70,7 @@ public class Rent {
     private String group_id;//               varchar(255)
 
     @OneToOne
+    @JsonManagedReference
     private Application application;//
 
 }
