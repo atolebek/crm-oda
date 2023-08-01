@@ -23,7 +23,7 @@ public class ManagerRentsController {
     private final ManagerRentService rentService;
 
     @GetMapping
-    @Secured("ROLE_CLIENT")
+    @Secured("ROLE_MANAGER")
     public List<ManagerRentsResponse> getRents(){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return rentService.getManagerRents(username);
