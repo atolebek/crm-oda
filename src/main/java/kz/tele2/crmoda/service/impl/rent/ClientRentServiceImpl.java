@@ -69,12 +69,12 @@ public class ClientRentServiceImpl implements ClientRentService {
 
             List<Rent> signedRents = rentRepository.findAllByCounterparty(counterparty);
 
-            List<Rent> last6MonthRents = signedRents.stream()
-                    .filter(x -> x.getContractCode() == c.getContract_code())
-                    .filter(x -> x.getStartDate().isAfter(last6Months.toLocalDate()))
-                    .collect(Collectors.toList());
+//            List<Rent> last6MonthRents = signedRents.stream()
+//                    .filter(x -> x.getContractCode() == c.getContract_code())
+//                    .filter(x -> x.getStartDate().isAfter(last6Months.toLocalDate()))
+//                    .collect(Collectors.toList());
 
-            Map<LocalDate, Rent> startDateSignedRentsMap = last6MonthRents.stream().collect(Collectors.toMap(r -> r.getStartDate(), r -> r));
+            Map<LocalDate, Rent> startDateSignedRentsMap = signedRents.stream().collect(Collectors.toMap(r -> r.getStartDate(), r -> r));
 
             for (LocalDate l : listOf6Months) {
                 if (startDateSignedRentsMap.get(l) == null) {

@@ -2,10 +2,7 @@ package kz.tele2.crmoda.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import kz.tele2.crmoda.model.onec.Counterparty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -51,6 +48,7 @@ public class Application {
 
     @OneToOne
     @JsonBackReference
+    @ToString.Exclude
     private Rent rent;//TODO foreign key
 
     private String electricityId;//TODO foreign key
