@@ -14,11 +14,16 @@ public interface ConditionRepository extends JpaRepository<Condition, Integer> {
 
     List<Condition> findAllByCounterpartyId(Long counterPartyId);
 
-    @Query(value = "SELECT c FROM Condition c where c.counterparty = :counterparty and c.condition_type = 'аренда'" +
-            " and c.condition_status = 'Действующее' and c.start_date <= :date and c.end_date >= :date")
+    @Query(value = "SELECT c FROM Condition c where c.counterparty = :counterparty and c.condition_type = 'rent'" +
+            " and c.condition_status = 'Active' and c.start_date <= :date and c.end_date >= :date")
     List<Condition> findAllByCounterpartyIdNeedsToSign(Counterparty counterparty, LocalDate date);
 
-    @Query(value = "SELECT c FROM Condition c WHERE c.condition_type = 'аренда' AND c.contract_code = :contractCode " +
+    @Query(value = "SELECT c FROM Condition c WHERE c.condition_type = 'rent' AND c.contract_code = :contractCode " +
             "AND c.site = :site AND c.counterparty = :counterparty")
     Condition getConditionForSignRent(String contractCode, Site site, Counterparty counterparty);
+
+    @Query(value = "SELECT c FROM Condition c WHERE c.counterparty = :counterparty AND c.condition_type = :type " +
+            "AND c.start_date <= :now AND c.end_date > :now AND c.condition_status = 'Active' " +
+            "AND c.expense_type <> 'Аренда земельного участка' AND c.contract_code IS NOT NULL")
+    List<Condition> getActiveConditionsByCounterpartyAndType(Counterparty counterparty, String type, LocalDate now);
 }
