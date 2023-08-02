@@ -3,7 +3,10 @@ package kz.tele2.crmoda.model;
 
 import kz.tele2.crmoda.model.onec.Counterparty;
 import kz.tele2.crmoda.model.onec.Site;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,13 +15,16 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "electricity")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Electricity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int contract_id;//TODO FOREING 'Conditions'
+    private String contractCode;//TODO FOREING 'Conditions'
 
     private String counter_value;
 
@@ -40,7 +46,8 @@ public class Electricity {
 
     private String status;//статус обработки показания счётчиков enum(новые, просмотренные, в процессе, завершено, ошибошке) * переименовать в status
 
-    private String user;//юзер-клиент TODO FOREIGN
+    @ManyToOne
+    private User user;//юзер-клиент TODO FOREIGN
 
     private String employee;//сотрудник теле2, закрепленный за клиентом TODO FOREIGN
 

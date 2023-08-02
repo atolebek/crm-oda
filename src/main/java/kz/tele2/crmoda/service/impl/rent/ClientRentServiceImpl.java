@@ -136,7 +136,7 @@ public class ClientRentServiceImpl implements ClientRentService {
 
         Site site = siteRepository.getSiteByName(request.getSiteName());
 
-        Condition condition = conditionRepository.getConditionForSignRent(request.getContractCode(), site, counterparty);
+        Condition condition = conditionRepository.getConditionForSign(request.getContractCode(), site, counterparty, "rent");
 
         List<LocalDate> dateRange = new ArrayList<>();
 

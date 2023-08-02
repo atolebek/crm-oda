@@ -51,6 +51,9 @@ public class Application {
     @ToString.Exclude
     private Rent rent;//TODO foreign key
 
-    private String electricityId;//TODO foreign key
+    @OneToOne
+    @JsonBackReference
+    @ToString.Exclude
+    private Electricity electricity;//TODO foreign key
 
 }
