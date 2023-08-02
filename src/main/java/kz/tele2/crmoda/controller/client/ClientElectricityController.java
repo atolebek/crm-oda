@@ -31,6 +31,11 @@ public class ClientElectricityController {
         return electricityService.getPaidMonths(username);
     }
 
+    @GetMapping("/{electricityId}")
+    public Electricity getElectricity(@PathVariable Long electricityId) {
+        return electricityService.getElectricity(electricityId);
+    }
+
     @PostMapping("/send")
     public List<Electricity> sendCounterValues(@RequestBody SendElectricityRequest request) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();

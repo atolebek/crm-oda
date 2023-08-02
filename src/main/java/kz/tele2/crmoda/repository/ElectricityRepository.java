@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ElectricityRepository extends JpaRepository<Electricity, Integer> {
+public interface ElectricityRepository extends JpaRepository<Electricity, Long> {
 
     @Query(value = "SELECT e FROM Electricity e WHERE e.counterparty = :counterparty")
     List<Electricity> getClientElectricities(Counterparty counterparty);

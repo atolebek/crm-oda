@@ -128,4 +128,9 @@ public class ElectricityServiceImpl implements ElectricityService {
         response.add(electricity);
         return response;
     }
+
+    @Override
+    public Electricity getElectricity(Long rentId) {
+        return electricityRepository.getById(rentId);
+    }
 }

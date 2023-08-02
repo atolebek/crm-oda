@@ -16,4 +16,5 @@ public interface ElectricityService {
 
     List<Electricity> sendCounterValues(SendElectricityRequest request, String username);
 
+    Electricity getElectricity(Long rentId);
 }
