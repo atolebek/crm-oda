@@ -29,12 +29,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ElectricityServiceImpl implements ElectricityService {
 
-    private ElectricityRepository electricityRepository;
-    private CounterpartyRepository counterpartyRepository;
-    private UserRepository userRepository;
-    private ConditionRepository conditionRepository;
-    private SiteRepository siteRepository;
-    private ApplicationRepository applicationRepository;
+    private final ElectricityRepository electricityRepository;
+    private final CounterpartyRepository counterpartyRepository;
+    private final UserRepository userRepository;
+    private final ConditionRepository conditionRepository;
+    private final SiteRepository siteRepository;
+    private final ApplicationRepository applicationRepository;
 
     @Override
     public List<Electricity> getClientElectricities(String username) {
@@ -64,8 +64,8 @@ public class ElectricityServiceImpl implements ElectricityService {
             Electricity e = dateElectricityMap.get(l);
             Boolean hasSentCounterReadings = e != null;
             response.setHasSentCounterReadings(hasSentCounterReadings);
-            response.setStartDate(e.getStartDate());
-            response.setEndDate(e.getEndDate());
+            response.setStartDate(e == null ? l : e.getStartDate());
+            response.setEndDate(e == null ? l.withDayOfMonth(l.lengthOfMonth()) : e.getEndDate());
             response.setYear(String.valueOf(l.getYear()));
             response.setName(l.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH));
             responses.add(response);

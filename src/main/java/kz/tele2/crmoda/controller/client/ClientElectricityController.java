@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClientElectricityController {
 
-    private ElectricityService electricityService;
+    private final ElectricityService electricityService;
 
     @GetMapping("/mine")
     public List<Electricity> getClientElectricities() {
