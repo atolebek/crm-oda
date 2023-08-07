@@ -158,7 +158,7 @@ public class ClientRentServiceImpl implements ClientRentService {
         UserType userType = user.getIsEntity() ? UserType.JURIDICAL : UserType.INDIVIDUAL;
         for (LocalDate newRentDate : dateRange) {
             Application application = applicationService.createApplicationForPayment(request, counterparty, userType, ApplicationType.RENT);
-            Rent rent = createRent(site, user, application, newRentDate, userType, endDate, condition, counterparty);
+            Rent rent = createRent(site, user, application, newRentDate, userType, condition, counterparty, null, Integer.parseInt(request.getUserDefinedUniqueCompletionCertificateId()));
             application.setRent(rent);
             applicationService.save(application);
             response.add(rent);
@@ -166,9 +166,9 @@ public class ClientRentServiceImpl implements ClientRentService {
         return response;
     }
 
-    private Rent createRent(Site site, User user, Application application, LocalDate newRentDate,
-                            UserType userType, LocalDate endDate, Condition condition,
-                            Counterparty counterparty) {
+    public Rent createRent(Site site, User user, Application application, LocalDate newRentDate,
+                            UserType userType, Condition condition,
+                            Counterparty counterparty, String groupid, int completionCertificateNumber) {
         LocalDate newRentEndDate = newRentDate.withDayOfMonth(newRentDate.lengthOfMonth());
 
         return rentRepository.save(
@@ -181,7 +181,7 @@ public class ClientRentServiceImpl implements ClientRentService {
                         .onCompletion(false)
                         .employee(user.getCurator())
                         .application(application)
-                        .group_id(null)
+                        .group_id(groupid)
                         .startDate(newRentDate)
                         .endDate(newRentEndDate)
                         .totalSum(condition.getSum_1() == null ? condition.getSum_2() : condition.getSum_1())
@@ -189,6 +189,7 @@ public class ClientRentServiceImpl implements ClientRentService {
                         .contractCode(condition.getContract_code())
                         .counterparty(counterparty)
                         .createdAt(LocalDateTime.now())
+                        .completionCertificate(completionCertificateNumber)
                         .build()
         );
     }

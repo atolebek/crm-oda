@@ -16,6 +16,7 @@ import kz.tele2.crmoda.model.onec.Site;
 import kz.tele2.crmoda.repository.*;
 import kz.tele2.crmoda.service.application.ApplicationService;
 import kz.tele2.crmoda.service.electricity.ElectricityService;
+import kz.tele2.crmoda.service.rent.ClientRentService;
 import kz.tele2.crmoda.util.DateFormatUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,7 @@ public class ElectricityServiceImpl implements ElectricityService {
     private final ApplicationRepository applicationRepository;
     private final ApplicationService applicationService;
     private final RentRepository rentRepository;
+    private final ClientRentService clientRentService;
 
     @Override
     public List<Electricity> getClientElectricities(String username) {
@@ -94,7 +96,7 @@ public class ElectricityServiceImpl implements ElectricityService {
         if (rentCondition != null) {
             Rent rent = rentRepository.findFirstForElectricity(counterparty, site, request.getContractCode(), request.getStartDate(), request.getEndDate());
             if (rent == null) {
-
+                clientRentService.createRent(site, user, application, request.getStartDate(), userType, condition, counterparty, groupId, Integer.parseInt(request.getUserDefinedUniqueCompletionCertificateId()));
             }
         }
 
@@ -177,7 +179,7 @@ public class ElectricityServiceImpl implements ElectricityService {
                                 .user_type(userType.name().toLowerCase())
                                 .status("NEW")
                                 .user(user)
-                                .employee("")
+                                .employee(user.getCurator())
                                 .bts_detail_locality(site.getPhysicalAddress())
                                 .iin(counterparty.getIdentification_code())
                                 .usedKWt(counterDelta.toString())

@@ -47,9 +47,10 @@ public class Electricity {
     private String status;//статус обработки показания счётчиков enum(новые, просмотренные, в процессе, завершено, ошибошке) * переименовать в status
 
     @ManyToOne
-    private User user;//юзер-клиент TODO FOREIGN
+    private User user;
 
-    private String employee;//сотрудник теле2, закрепленный за клиентом TODO FOREIGN
+    @ManyToOne
+    private User employee;
 
     private String bts_detail_locality;//переделать на связь с таблицей sites и переименовать поле в site_id TODO FOREIGN
 

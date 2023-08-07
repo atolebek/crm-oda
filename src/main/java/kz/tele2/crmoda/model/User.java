@@ -42,8 +42,9 @@ public class User {
   @Column
   private String name;
 
-  @Column
-  private int curator;
+  @ManyToOne
+  @JoinColumn(name = "curator_id")
+  private User curator;
 
   @Column(nullable = false)
   private Boolean termsOfUse = false;
