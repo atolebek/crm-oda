@@ -46,4 +46,7 @@ public class UserResponseDTO {
   @JsonProperty("employee_curator")
   @ApiModelProperty(position = 13)
   private User employeeCurator;
+  @JsonProperty("is_deleted")
+  @ApiModelProperty(position = 13)
+  private Boolean isDeleted;
 }

@@ -53,8 +53,14 @@ public class UserService {
   @Transactional
   public void delete(String username) {
     User user = userRepository.findByUsername(username);
-    roleRepository.deleteAllUserRoles(user.getId());
-    userRepository.deleteByUsername(username);
+    List<String> userRoles = user.getRoles().stream().map(r -> r.getName()).collect(Collectors.toList());
+    if (userRoles.contains("ROLE_ADMIN")) {
+      throw new CustomException("Admin can't be deleted", HttpStatus.BAD_REQUEST);
+    }
+//    roleRepository.deleteAllUserRoles(user.getId());
+//    userRepository.deleteByUsername(username);
+    user.setIsDeleted(true);
+    userRepository.save(user);
   }
 
   public User search(String username) {

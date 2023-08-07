@@ -56,4 +56,7 @@ public class User {
 
   @Column
   private int employeeCurator;
+
+  @Column
+  private Boolean isDeleted;
 }

@@ -12,6 +12,7 @@ import kz.tele2.crmoda.model.onec.Condition;
 import kz.tele2.crmoda.model.onec.Counterparty;
 import kz.tele2.crmoda.model.onec.Site;
 import kz.tele2.crmoda.repository.*;
+import kz.tele2.crmoda.service.application.ApplicationService;
 import kz.tele2.crmoda.service.electricity.ElectricityService;
 import kz.tele2.crmoda.util.DateFormatUtil;
 import lombok.RequiredArgsConstructor;
@@ -19,10 +20,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.TextStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -36,6 +36,7 @@ public class ElectricityServiceImpl implements ElectricityService {
     private final ConditionRepository conditionRepository;
     private final SiteRepository siteRepository;
     private final ApplicationRepository applicationRepository;
+    private final ApplicationService applicationService;
 
     @Override
     public List<Electricity> getClientElectricities(String username) {
@@ -74,6 +75,43 @@ public class ElectricityServiceImpl implements ElectricityService {
         return responses;
     }
 
+    private Electricity sendCounterValueSingle(SendElectricityRequest request, User user, Counterparty counterparty,
+                                               Site site, Condition condition, UserType userType){
+        Application application = applicationService.createElectricityApplication(request, counterparty, userType);
+        Electricity electricity = saveElectricity(request, condition, userType, user, counterparty, site, application);
+        application.setElectricity(electricity);
+        applicationRepository.save(application);
+        return electricity;
+    }
+
+    private List<SendElectricityRequest> divideSendCounterMultipleMonths(SendElectricityRequest request) {
+        List<SendElectricityRequest> requests = new ArrayList<>();
+        LocalDate startDate = request.getStartDate();
+        LocalDate endDate = request.getEndDate();
+        int startingCounterValue = Integer.parseInt(request.getPreviousCounterValue());
+        int currentCounterValue = Integer.parseInt(request.getCounterValue());
+        int delta = currentCounterValue - startingCounterValue;
+
+        int monthsBetween = ((int) ChronoUnit.MONTHS.between(startDate, endDate));
+
+        for (int i = 0; i <= monthsBetween; i++) {
+            SendElectricityRequest singleRequest = request;
+            singleRequest.setPreviousCounterValue(Integer.toString(startingCounterValue));
+            if (i == monthsBetween) {
+                singleRequest.setCounterValue(Integer.toString((delta/(i+1)) + delta % (i + 1)));
+            } else {
+                singleRequest.setCounterValue(Integer.toString(delta / (i + 1)));
+            }
+            singleRequest.setStartDate(startDate);
+            singleRequest.setEndDate(startDate.withDayOfMonth(startDate.lengthOfMonth()));
+            startDate = startDate.plusMonths(1);
+            startingCounterValue = startingCounterValue + delta/(i+1);
+            requests.add(singleRequest);
+        }
+
+        return requests;
+    }
+
     @Override
     public List<Electricity> sendCounterValues(SendElectricityRequest request, String username) {
         User user = userRepository.findByUsername(username);
@@ -81,26 +119,24 @@ public class ElectricityServiceImpl implements ElectricityService {
         Site site = siteRepository.getSiteByName(request.getSiteName());
         Condition condition = conditionRepository.getConditionForSign(request.getContractCode(), site, counterparty, "electricity");
         UserType userType = user.getIsEntity() ? UserType.JURIDICAL : UserType.INDIVIDUAL;
-        LocalDate pdfDate = user.getIsEntity() ? request.getEndDate() : LocalDate.now();
-        Application application =
-                applicationRepository.save(
-                        Application.builder()
-                                .applicationName(userType == UserType.JURIDICAL ?
-                                        ApplicationName.COMPLETION_CERTIFICATE.name().toLowerCase()
-                                        : ApplicationName.ACTUAL_AREA_USAGE_ACT.name().toLowerCase())
-                                .signedByClient(true)
-                                .signedByManager(false)
-                                .syncedWith1C(false)
-                                .counterparty(counterparty)
-                                .pdfDate(pdfDate)
-                                .hash("ABCDEF")
-                                .unsignedPdf("UNSIGNED_LINK")
-                                .unsignedName("UNSIGNED_NAME")
-                                .signedPdf("SIGNED_LINK")
-                                .signedName("SIGNED_NAME")
-                                .conditionType(ApplicationType.ELECTRICITY.name().toLowerCase())
-                                .applicationId(request.getUserDefinedUniqueCompletionCertificateId())
-                                .build());
+
+        List<Electricity> responses = new ArrayList<>();
+
+        for (SendElectricityRequest singleRequest : divideSendCounterMultipleMonths(request)) {
+            Electricity electricity = sendCounterValueSingle(singleRequest, user, counterparty, site, condition, userType);
+            responses.add(electricity);
+        }
+
+        return responses;
+    }
+
+    @Override
+    public Electricity getElectricity(Long rentId) {
+        return electricityRepository.getById(rentId);
+    }
+
+    private Electricity saveElectricity(SendElectricityRequest request, Condition condition, UserType userType,
+                                        User user, Counterparty counterparty, Site site, Application application) {
         BigDecimal tariff = new BigDecimal(request.getTariffRate());
         BigDecimal counterDelta = new BigDecimal(request.getCounterValue()).subtract(new BigDecimal(request.getPreviousCounterValue()));
         BigDecimal totalSum = tariff.multiply(counterDelta);
@@ -123,15 +159,6 @@ public class ElectricityServiceImpl implements ElectricityService {
                         .counterparty(counterparty)
                         .application(application)
                         .build());
-        application.setElectricity(electricity);
-        applicationRepository.save(application);
-        List<Electricity> response = new ArrayList<>();
-        response.add(electricity);
-        return response;
-    }
-
-    @Override
-    public Electricity getElectricity(Long rentId) {
-        return electricityRepository.getById(rentId);
+        return electricity;
     }
 }
