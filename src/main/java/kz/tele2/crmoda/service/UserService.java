@@ -25,6 +25,7 @@ import kz.tele2.crmoda.security.JwtTokenProvider;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -74,7 +75,7 @@ public class UserService {
 
   public int countUsers() {
     List<Role> roles = roleRepository.findAllByNameIn(Arrays.asList("ROLE_CLIENT"));
-    return userRepository.countClients(roles);
+    return userRepository.countUsersByRolesIn(roles);
   }
 
 }

@@ -86,7 +86,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/count")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Secured("ROLE_ADMIN")
     public int countUsers() {
         return userService.countUsers();
     }
