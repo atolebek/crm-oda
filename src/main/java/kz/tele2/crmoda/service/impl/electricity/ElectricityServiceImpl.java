@@ -1,12 +1,14 @@
 package kz.tele2.crmoda.service.impl.electricity;
 
+import kz.tele2.crmoda.dto.request.SignDocumentRequest;
 import kz.tele2.crmoda.dto.request.electricity.SendElectricityRequest;
 import kz.tele2.crmoda.dto.response.electricity.PaidMonthsResponse;
-import kz.tele2.crmoda.enums.ApplicationName;
 import kz.tele2.crmoda.enums.ApplicationType;
 import kz.tele2.crmoda.enums.UserType;
+import kz.tele2.crmoda.exception.CustomException;
 import kz.tele2.crmoda.model.Application;
 import kz.tele2.crmoda.model.Electricity;
+import kz.tele2.crmoda.model.Rent;
 import kz.tele2.crmoda.model.User;
 import kz.tele2.crmoda.model.onec.Condition;
 import kz.tele2.crmoda.model.onec.Counterparty;
@@ -16,6 +18,7 @@ import kz.tele2.crmoda.service.application.ApplicationService;
 import kz.tele2.crmoda.service.electricity.ElectricityService;
 import kz.tele2.crmoda.util.DateFormatUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -24,6 +27,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +41,7 @@ public class ElectricityServiceImpl implements ElectricityService {
     private final SiteRepository siteRepository;
     private final ApplicationRepository applicationRepository;
     private final ApplicationService applicationService;
+    private final RentRepository rentRepository;
 
     @Override
     public List<Electricity> getClientElectricities(String username) {
@@ -76,11 +81,23 @@ public class ElectricityServiceImpl implements ElectricityService {
     }
 
     private Electricity sendCounterValueSingle(SendElectricityRequest request, User user, Counterparty counterparty,
-                                               Site site, Condition condition, UserType userType){
-        Application application = applicationService.createElectricityApplication(request, counterparty, userType);
-        Electricity electricity = saveElectricity(request, condition, userType, user, counterparty, site, application);
+                                               Site site, Condition condition, UserType userType, String groupId){
+        Application application = applicationService.createApplicationForPayment(request, counterparty, userType, ApplicationType.ELECTRICITY);
+        Electricity electricity = saveElectricity(request, condition, userType, user, counterparty, site, application, groupId);
         application.setElectricity(electricity);
         applicationRepository.save(application);
+
+        Condition rentCondition = userType == UserType.JURIDICAL ?
+                conditionRepository.getFirstByCounterpartyAndTypeAndSiteActiveConditionsByCounterpartyAndTypeAndSite(site, request.getContractCode(), counterparty, ApplicationType.RENT.toString().toLowerCase(), LocalDate.now())
+                : null;
+
+        if (rentCondition != null) {
+            Rent rent = rentRepository.findFirstForElectricity(counterparty, site, request.getContractCode(), request.getStartDate(), request.getEndDate());
+            if (rent == null) {
+
+            }
+        }
+
         return electricity;
     }
 
@@ -113,7 +130,7 @@ public class ElectricityServiceImpl implements ElectricityService {
     }
 
     @Override
-    public List<Electricity> sendCounterValues(SendElectricityRequest request, String username) {
+    public List<Electricity> sendCounterValues(SignDocumentRequest request, String username) {
         User user = userRepository.findByUsername(username);
         Counterparty counterparty = counterpartyRepository.findByName(user.getName());
         Site site = siteRepository.getSiteByName(request.getSiteName());
@@ -122,10 +139,18 @@ public class ElectricityServiceImpl implements ElectricityService {
 
         List<Electricity> responses = new ArrayList<>();
 
-        for (SendElectricityRequest singleRequest : divideSendCounterMultipleMonths(request)) {
-            Electricity electricity = sendCounterValueSingle(singleRequest, user, counterparty, site, condition, userType);
+        String uuid = UUID.randomUUID().toString();
+
+        List<SendElectricityRequest> requests = divideSendCounterMultipleMonths((SendElectricityRequest) request);
+
+        //throws if already sent counter readings
+        hasAlreadySent(counterparty, requests);
+
+        for (SendElectricityRequest singleRequest : requests) {
+            Electricity electricity = sendCounterValueSingle(singleRequest, user, counterparty, site, condition, userType, uuid);
             responses.add(electricity);
         }
+
 
         return responses;
     }
@@ -136,29 +161,42 @@ public class ElectricityServiceImpl implements ElectricityService {
     }
 
     private Electricity saveElectricity(SendElectricityRequest request, Condition condition, UserType userType,
-                                        User user, Counterparty counterparty, Site site, Application application) {
+                                        User user, Counterparty counterparty, Site site, Application application,
+                                        String groupId) {
         BigDecimal tariff = new BigDecimal(request.getTariffRate());
         BigDecimal counterDelta = new BigDecimal(request.getCounterValue()).subtract(new BigDecimal(request.getPreviousCounterValue()));
         BigDecimal totalSum = tariff.multiply(counterDelta);
         Electricity electricity =
                 electricityRepository.save(Electricity.builder()
-                        .contractCode(condition.getContract_code())
-                        .counter_value(request.getCounterValue())
-                        .startDate(request.getStartDate())
-                        .endDate(request.getEndDate())
-                        .totalSum(totalSum)
-                        .tariff(tariff)
-                        .user_type(userType.name().toLowerCase())
-                        .status("NEW")
-                        .user(user)
-                        .employee("")
-                        .bts_detail_locality(site.getPhysicalAddress())
-                        .iin(counterparty.getIdentification_code())
-                        .usedKWt(counterDelta.toString())
-                        .site(site)
-                        .counterparty(counterparty)
-                        .application(application)
-                        .build());
+                                .contractCode(condition.getContract_code())
+                                .counter_value(request.getCounterValue())
+                                .startDate(request.getStartDate())
+                                .endDate(request.getEndDate())
+                                .totalSum(totalSum)
+                                .tariff(tariff)
+                                .user_type(userType.name().toLowerCase())
+                                .status("NEW")
+                                .user(user)
+                                .employee("")
+                                .bts_detail_locality(site.getPhysicalAddress())
+                                .iin(counterparty.getIdentification_code())
+                                .usedKWt(counterDelta.toString())
+                                .site(site)
+                                .counterparty(counterparty)
+                                .application(application)
+                                .group_id(groupId)
+                                .build());
         return electricity;
     }
+
+    private void hasAlreadySent(Counterparty counterparty, List<SendElectricityRequest> requests) {
+        List<LocalDate> startDates = requests.stream().map(r -> r.getStartDate()).collect(Collectors.toList());
+
+        Electricity[] electricities = (Electricity[]) electricityRepository.getElectricitiesByCounterpartyAndStartDateInOrderByStartDateAsc(counterparty, startDates).toArray();
+
+        if (!(electricities.length == 0)) {
+            throw new CustomException("You have already sent readings for period of " + electricities[0].getStartDate() + " and " + electricities[electricities.length - 1].getEndDate(), HttpStatus.CONFLICT);
+        }
+    }
+
 }

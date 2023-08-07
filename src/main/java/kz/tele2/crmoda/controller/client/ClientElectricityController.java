@@ -1,6 +1,7 @@
 package kz.tele2.crmoda.controller.client;
 
 import io.swagger.annotations.Api;
+import kz.tele2.crmoda.dto.request.SignDocumentRequest;
 import kz.tele2.crmoda.dto.request.electricity.SendElectricityRequest;
 import kz.tele2.crmoda.dto.response.electricity.PaidMonthsResponse;
 import kz.tele2.crmoda.model.Electricity;
@@ -37,7 +38,7 @@ public class ClientElectricityController {
     }
 
     @PostMapping("/send")
-    public List<Electricity> sendCounterValues(@RequestBody SendElectricityRequest request) {
+    public List<Electricity> sendCounterValues(@RequestBody SignDocumentRequest request) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return electricityService.sendCounterValues(request, username);
     }

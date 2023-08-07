@@ -1,5 +1,6 @@
 package kz.tele2.crmoda.service.application;
 
+import kz.tele2.crmoda.dto.request.SignDocumentRequest;
 import kz.tele2.crmoda.dto.request.electricity.SendElectricityRequest;
 import kz.tele2.crmoda.enums.ApplicationName;
 import kz.tele2.crmoda.enums.ApplicationType;
@@ -18,8 +19,8 @@ public class ApplicationService {
 
     private final ApplicationRepository applicationRepository;
 
-    public Application createElectricityApplication(SendElectricityRequest request, Counterparty counterparty,
-                                                    UserType userType) {
+    public Application createApplicationForPayment(SignDocumentRequest request, Counterparty counterparty,
+                                                   UserType userType, ApplicationType type) {
         LocalDate pdfDate = userType == UserType.JURIDICAL ? request.getEndDate() : LocalDate.now();
         Application application =
                 applicationRepository.save(
@@ -37,9 +38,13 @@ public class ApplicationService {
                                 .unsignedName("UNSIGNED_NAME")
                                 .signedPdf("SIGNED_LINK")
                                 .signedName("SIGNED_NAME")
-                                .conditionType(ApplicationType.ELECTRICITY.name().toLowerCase())
+                                .conditionType(type.name().toLowerCase())
                                 .applicationId(request.getUserDefinedUniqueCompletionCertificateId())
                                 .build());
         return application;
+    }
+
+    public Application save(Application application) {
+        return applicationRepository.save(application);
     }
 }

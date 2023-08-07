@@ -1,6 +1,7 @@
 package kz.tele2.crmoda.controller.client;
 
 import io.swagger.annotations.Api;
+import kz.tele2.crmoda.dto.request.SignDocumentRequest;
 import kz.tele2.crmoda.dto.request.rent.SignRentRequest;
 import kz.tele2.crmoda.dto.response.rent.ClientRentsResponse;
 import kz.tele2.crmoda.dto.response.rent.ClientSignedRentResponse;
@@ -36,7 +37,7 @@ public class ClientRentsController {
     }
 
     @PostMapping("/sign")
-    public List<Rent> signRentContract(@RequestBody SignRentRequest request) {
+    public List<Rent> signRentContract(@RequestBody SignDocumentRequest request) {
         return rentService.signRent(request);
     }
 

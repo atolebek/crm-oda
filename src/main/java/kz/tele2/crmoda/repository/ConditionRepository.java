@@ -26,4 +26,13 @@ public interface ConditionRepository extends JpaRepository<Condition, Integer> {
             "AND c.start_date <= :now AND c.end_date > :now AND c.condition_status = 'Active' " +
             "AND c.expense_type <> 'Аренда земельного участка' AND c.contract_code IS NOT NULL")
     List<Condition> getActiveConditionsByCounterpartyAndType(Counterparty counterparty, String type, LocalDate now);
+
+    @Query(value = "SELECT c FROM Condition c " +
+            "WHERE c.counterparty = :counterparty " +
+            "AND c.condition_type = :type " +
+            "AND c.start_date <= :now AND c.end_date > :now " +
+            "AND c.condition_status = 'Active' " +
+            "AND c.contract_code = :contractCode " +
+            "AND c.site = :site")
+    Condition getFirstByCounterpartyAndTypeAndSiteActiveConditionsByCounterpartyAndTypeAndSite(Site site, String contractCode, Counterparty counterparty, String type, LocalDate now);
 }

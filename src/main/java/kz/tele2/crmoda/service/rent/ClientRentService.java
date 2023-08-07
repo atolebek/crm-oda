@@ -1,5 +1,6 @@
 package kz.tele2.crmoda.service.rent;
 
+import kz.tele2.crmoda.dto.request.SignDocumentRequest;
 import kz.tele2.crmoda.dto.request.rent.SignRentRequest;
 import kz.tele2.crmoda.dto.response.rent.ClientRentsResponse;
 import kz.tele2.crmoda.dto.response.rent.ClientSignedRentResponse;
@@ -15,6 +16,6 @@ public interface ClientRentService {
 
     ClientSignedRentResponse getSignedRent(Long rentId);
 
-    List<Rent> signRent(SignRentRequest request);
+    List<Rent> signRent(SignDocumentRequest request);
 
 }

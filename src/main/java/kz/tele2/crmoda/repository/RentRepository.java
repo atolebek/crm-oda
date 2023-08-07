@@ -13,7 +13,18 @@ public interface RentRepository extends JpaRepository<Rent, Long> {
 
     List<Rent> findAllByCounterparty(Counterparty counterparty);
 
-    @Query(value = "SELECT r FROM Rent r WHERE r.counterparty = :counterparty AND r.site = :site " +
-            "AND r.contractCode = :contractCode AND r.startDate IN :startDates")
+    @Query(value = "SELECT r FROM Rent r " +
+            "WHERE r.counterparty = :counterparty " +
+            "AND r.site = :site " +
+            "AND r.contractCode = :contractCode " +
+            "AND r.startDate IN :startDates")
     List<Rent> findAllSignedRents(Counterparty counterparty, Site site, String contractCode, List<LocalDate> startDates);
+
+    @Query(value = "SELECT r FROM Rent r " +
+            "WHERE r.counterparty = :counterparty " +
+            "AND r.site = :site " +
+            "AND r.contractCode = :contractCode " +
+            "AND r.startDate = :startDate " +
+            "AND r.endDate = :endDate")
+    Rent findFirstForElectricity(Counterparty counterparty, Site site, String contractCode, LocalDate startDate, LocalDate endDate);
 }

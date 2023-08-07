@@ -1,5 +1,6 @@
 package kz.tele2.crmoda.service.impl.rent;
 
+import kz.tele2.crmoda.dto.request.SignDocumentRequest;
 import kz.tele2.crmoda.dto.request.rent.SignRentRequest;
 import kz.tele2.crmoda.dto.response.rent.ClientRentsResponse;
 import kz.tele2.crmoda.dto.response.rent.ClientSignedRentResponse;
@@ -14,6 +15,7 @@ import kz.tele2.crmoda.model.onec.Condition;
 import kz.tele2.crmoda.model.onec.Counterparty;
 import kz.tele2.crmoda.model.onec.Site;
 import kz.tele2.crmoda.repository.*;
+import kz.tele2.crmoda.service.application.ApplicationService;
 import kz.tele2.crmoda.service.rent.ClientRentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,6 +39,7 @@ public class ClientRentServiceImpl implements ClientRentService {
     private final RentRepository rentRepository;
     private final SiteRepository siteRepository;
     private final ApplicationRepository applicationRepository;
+    private final ApplicationService applicationService;
 
     @Override
     public List<ClientRentsResponse> getClientsRents(String username) {
@@ -123,16 +126,16 @@ public class ClientRentServiceImpl implements ClientRentService {
     }
 
     @Override
-    public List<Rent> signRent(SignRentRequest request) {
+    public List<Rent> signRent(SignDocumentRequest request) {
         List<Rent> response = new ArrayList<>();
         LocalDate startDate = request.getStartDate();
         LocalDate endDate = request.getEndDate();
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        User u = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
 
-        Counterparty counterparty = counterpartyRepository.findByName(u.getName());
+        Counterparty counterparty = counterpartyRepository.findByName(user.getName());
 
         Site site = siteRepository.getSiteByName(request.getSiteName());
 
@@ -152,55 +155,41 @@ public class ClientRentServiceImpl implements ClientRentService {
                 .collect(Collectors.toList());
         dateRange.removeAll(existingDates);
 
-        UserType userType = u.getIsEntity() ? UserType.JURIDICAL : UserType.INDIVIDUAL;
+        UserType userType = user.getIsEntity() ? UserType.JURIDICAL : UserType.INDIVIDUAL;
         for (LocalDate newRentDate : dateRange) {
-            LocalDate newRentEndDate = newRentDate.withDayOfMonth(newRentDate.lengthOfMonth());
-            LocalDate pdfDate = u.getIsEntity() ? endDate : LocalDate.now();
-
-                    Application application =
-                    applicationRepository.save(
-                            Application.builder()
-                            .applicationName(userType == UserType.JURIDICAL ?
-                                            ApplicationName.COMPLETION_CERTIFICATE.name().toLowerCase()
-                                            : ApplicationName.ACTUAL_AREA_USAGE_ACT.name().toLowerCase())
-                            .signedByClient(true)
-                            .signedByManager(false)
-                            .syncedWith1C(false)
-                            .counterparty(counterparty)
-                            .pdfDate(pdfDate)
-                            .hash("ABCDEF")
-                            .unsignedPdf("UNSIGNED_LINK")
-                            .unsignedName("UNSIGNED_NAME")
-                            .signedPdf("SIGNED_LINK")
-                            .signedName("SIGNED_NAME")
-                            .conditionType(ApplicationType.RENT.name().toLowerCase())
-                            .applicationId(request.getUserDefinedUniqueCompletionCertificateId())
-                            .build());
-                    Rent rent =
-                    rentRepository.save(
-                            Rent.builder()
-                                    .site(site)
-                                    .hasError(false)
-                                    .errorMessage(null)
-                                    .archived(false)
-                                    .status("NEW")
-                                    .onCompletion(false)
-                                    .employee(u.getCurator())
-                                    .application(application)
-                                    .group_id(null)
-                                    .startDate(newRentDate)
-                                    .endDate(newRentEndDate)
-                                    .totalSum(condition.getSum_1() == null ? condition.getSum_2() : condition.getSum_1())
-                                    .userType(userType.name())
-                                    .contractCode(condition.getContract_code())
-                                    .counterparty(counterparty)
-                                    .createdAt(LocalDateTime.now())
-                                    .build()
-                    );
-                    application.setRent(rent);
-                    applicationRepository.save(application);
-                    response.add(rent);
+            Application application = applicationService.createApplicationForPayment(request, counterparty, userType, ApplicationType.RENT);
+            Rent rent = createRent(site, user, application, newRentDate, userType, endDate, condition, counterparty);
+            application.setRent(rent);
+            applicationService.save(application);
+            response.add(rent);
         }
         return response;
+    }
+
+    private Rent createRent(Site site, User user, Application application, LocalDate newRentDate,
+                            UserType userType, LocalDate endDate, Condition condition,
+                            Counterparty counterparty) {
+        LocalDate newRentEndDate = newRentDate.withDayOfMonth(newRentDate.lengthOfMonth());
+
+        return rentRepository.save(
+                Rent.builder()
+                        .site(site)
+                        .hasError(false)
+                        .errorMessage(null)
+                        .archived(false)
+                        .status("NEW")
+                        .onCompletion(false)
+                        .employee(user.getCurator())
+                        .application(application)
+                        .group_id(null)
+                        .startDate(newRentDate)
+                        .endDate(newRentEndDate)
+                        .totalSum(condition.getSum_1() == null ? condition.getSum_2() : condition.getSum_1())
+                        .userType(userType.name())
+                        .contractCode(condition.getContract_code())
+                        .counterparty(counterparty)
+                        .createdAt(LocalDateTime.now())
+                        .build()
+        );
     }
 }
