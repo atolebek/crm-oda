@@ -13,6 +13,7 @@ import kz.tele2.crmoda.model.onec.Counterparty;
 import kz.tele2.crmoda.model.onec.Site;
 import kz.tele2.crmoda.repository.*;
 import kz.tele2.crmoda.service.electricity.ElectricityService;
+import kz.tele2.crmoda.util.DateFormatUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -67,7 +68,7 @@ public class ElectricityServiceImpl implements ElectricityService {
             response.setStartDate(e == null ? l : e.getStartDate());
             response.setEndDate(e == null ? l.withDayOfMonth(l.lengthOfMonth()) : e.getEndDate());
             response.setYear(String.valueOf(l.getYear()));
-            response.setName(l.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH));
+            response.setName(DateFormatUtil.getRussianMonthName(l));
             responses.add(response);
         }
         return responses;

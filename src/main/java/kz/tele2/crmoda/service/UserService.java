@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import kz.tele2.crmoda.security.JwtTokenProvider;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -69,6 +70,11 @@ public class UserService {
 
   public List<User> getAllUsers() {
     return userRepository.getAllUsers();
+  }
+
+  public int countUsers() {
+    List<Role> roles = roleRepository.findAllByNameIn(Arrays.asList("ROLE_CLIENT"));
+    return userRepository.countClients(roles);
   }
 
 }

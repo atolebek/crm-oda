@@ -194,6 +194,7 @@ public class ClientRentServiceImpl implements ClientRentService {
                                     .userType(userType.name())
                                     .contractCode(condition.getContract_code())
                                     .counterparty(counterparty)
+                                    .createdAt(LocalDateTime.now())
                                     .build()
                     );
                     application.setRent(rent);

@@ -7,6 +7,7 @@ import kz.tele2.crmoda.model.User;
 import kz.tele2.crmoda.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -75,7 +76,6 @@ public class UserController {
     }
 
     @GetMapping(value = "/me")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
     @ApiOperation(value = "${AuthController.me}", response = UserResponseDTO.class, authorizations = { @Authorization(value="apiKey") })
     @ApiResponses(value = {//
             @ApiResponse(code = 400, message = "Something went wrong"), //
@@ -83,6 +83,12 @@ public class UserController {
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
     public UserResponseDTO whoami(HttpServletRequest req) {
         return modelMapper.map(userService.whoami(req), UserResponseDTO.class);
+    }
+
+    @GetMapping(value = "/count")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public int countUsers() {
+        return userService.countUsers();
     }
 
 }
