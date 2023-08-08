@@ -202,4 +202,12 @@ public class ElectricityServiceImpl implements ElectricityService {
         }
     }
 
+    @Override
+    public List<Electricity> getEmployeeElectricities(String username) {
+        User user = userRepository.findByUsername(username);
+
+        List<Electricity> electricities = electricityRepository.getElectricitiesByEmployeeOrderByCreatedAtDesc(user);
+
+        return electricities;
+    }
 }

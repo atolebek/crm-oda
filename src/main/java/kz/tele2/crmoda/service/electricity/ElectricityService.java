@@ -13,6 +13,8 @@ public interface ElectricityService {
 
     List<Electricity> getClientElectricities(String username);
 
+    List<Electricity> getEmployeeElectricities(String username);
+
     List<PaidMonthsResponse> getPaidMonths(String username);
 
     List<Electricity> sendCounterValues(SendElectricityRequest request, String username);
