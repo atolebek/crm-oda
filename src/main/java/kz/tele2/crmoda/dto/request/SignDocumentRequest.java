@@ -8,6 +8,18 @@ import java.time.LocalDate;
 
 @Data
 public class SignDocumentRequest {
+
+    public SignDocumentRequest() {
+    }
+
+    public SignDocumentRequest(SignDocumentRequest request) {
+        this.siteName = request.getSiteName();
+        this.contractCode = request.getContractCode();
+        this.startDate = request.getStartDate();
+        this.endDate = request.getEndDate();
+        this.userDefinedUniqueCompletionCertificateId = request.getUserDefinedUniqueCompletionCertificateId();
+    }
+
     @JsonProperty("site_name")
     private String siteName;
 

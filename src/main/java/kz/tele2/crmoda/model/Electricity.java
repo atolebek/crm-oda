@@ -1,6 +1,7 @@
 package kz.tele2.crmoda.model;
 
 
+import kz.tele2.crmoda.enums.DocumentStatus;
 import kz.tele2.crmoda.model.onec.Counterparty;
 import kz.tele2.crmoda.model.onec.Site;
 import lombok.AllArgsConstructor;
@@ -44,7 +45,8 @@ public class Electricity {
     @ManyToOne
     private Counterparty counterparty;//арендодатель
 
-    private String status;//статус обработки показания счётчиков enum(новые, просмотренные, в процессе, завершено, ошибошке) * переименовать в status
+    @Enumerated(EnumType.STRING)
+    private DocumentStatus status;//статус обработки показания счётчиков enum(новые, просмотренные, в процессе, завершено, ошибошке) * переименовать в status
 
     @ManyToOne
     private User user;

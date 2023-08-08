@@ -56,7 +56,8 @@ public class Rent {
 
     private LocalDateTime updatedAt;//
 
-    private int employee;//TODO FOREIGN USER
+    @ManyToOne
+    private User employee;//TODO FOREIGN USER
 
     private Boolean archived;//
 

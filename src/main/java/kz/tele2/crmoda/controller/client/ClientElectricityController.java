@@ -38,7 +38,7 @@ public class ClientElectricityController {
     }
 
     @PostMapping("/send")
-    public List<Electricity> sendCounterValues(@RequestBody SignDocumentRequest request) {
+    public List<Electricity> sendCounterValues(@RequestBody SendElectricityRequest request) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return electricityService.sendCounterValues(request, username);
     }

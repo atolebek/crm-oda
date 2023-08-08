@@ -15,7 +15,7 @@ public interface ElectricityService {
 
     List<PaidMonthsResponse> getPaidMonths(String username);
 
-    List<Electricity> sendCounterValues(SignDocumentRequest request, String username);
+    List<Electricity> sendCounterValues(SendElectricityRequest request, String username);
 
     Electricity getElectricity(Long rentId);
 }
