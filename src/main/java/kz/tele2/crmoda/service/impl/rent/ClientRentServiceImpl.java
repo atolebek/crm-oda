@@ -155,6 +155,10 @@ public class ClientRentServiceImpl implements ClientRentService {
                 .collect(Collectors.toList());
         dateRange.removeAll(existingDates);
 
+        if (dateRange.size() == 0) {
+            throw new CustomException("You have already signed rent for this period", HttpStatus.CONFLICT);
+        }
+
         UserType userType = user.getIsEntity() ? UserType.JURIDICAL : UserType.INDIVIDUAL;
         for (LocalDate newRentDate : dateRange) {
             Application application = applicationService.createApplicationForPayment(request, counterparty, userType, ApplicationType.RENT);
