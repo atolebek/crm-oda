@@ -79,16 +79,18 @@ public class ClientRentServiceImpl implements ClientRentService {
 
             Map<LocalDate, Rent> startDateSignedRentsMap = signedRents.stream().collect(Collectors.toMap(r -> r.getStartDate(), r -> r));
 
-            for (LocalDate l : listOf6Months) {
-                if (startDateSignedRentsMap.get(l) == null) {
-                    ClientRentsResponse rentsResponse = ClientRentsResponse.builder()
-                            .startDate(l)
-                            .contractCode(c.getContract_code())
-                            .siteName(c.getSite().getName())
-                            .totalSum(c.getSum_1())
-                            .signed(false)
-                            .build();
-                    responses.add(rentsResponse);
+            if (!user.getIsEntity()) {
+                for (LocalDate l : listOf6Months) {
+                    if (startDateSignedRentsMap.get(l) == null) {
+                        ClientRentsResponse rentsResponse = ClientRentsResponse.builder()
+                                .startDate(l)
+                                .contractCode(c.getContract_code())
+                                .siteName(c.getSite().getName())
+                                .totalSum(c.getSum_1())
+                                .signed(false)
+                                .build();
+                        responses.add(rentsResponse);
+                    }
                 }
             }
             for (Rent r : signedRents) {
