@@ -6,6 +6,7 @@ import kz.tele2.crmoda.service.electricity.ElectricityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,12 @@ public class EmployeeElectricityController {
     public List<Electricity> getEmployeeElectricites() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return electricityService.getEmployeeElectricities(username);
+    }
+
+    @GetMapping("/{id}")
+    public Electricity getEmployeeElectricity(@PathVariable Long id) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return electricityService.getElectricity(id);
     }
 
 }
