@@ -86,7 +86,7 @@ public class UserController {
         return modelMapper.map(userService.whoami(req), UserResponseDTO.class);
     }
 
-    @GetMapping(value = "/termsofuse")
+    @PostMapping(value = "/termsofuse")
     public User agreeTermsOfUse() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return userService.agreeTermsOfUse(username);
