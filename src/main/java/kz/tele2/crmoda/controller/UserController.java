@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -83,6 +84,12 @@ public class UserController {
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
     public UserResponseDTO whoami(HttpServletRequest req) {
         return modelMapper.map(userService.whoami(req), UserResponseDTO.class);
+    }
+
+    @GetMapping(value = "/termsofuse")
+    public User agreeTermsOfUse() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userService.agreeTermsOfUse(username);
     }
 
     @GetMapping(value = "/count")

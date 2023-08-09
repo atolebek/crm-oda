@@ -79,6 +79,12 @@ public class UserService {
     return userRepository.getAllUsers();
   }
 
+  public User agreeTermsOfUse(String username) {
+    User user = userRepository.findByUsername(username);
+    user.setTermsOfUse(true);
+    return userRepository.save(user);
+  }
+
   public int countUsers() {
     List<Role> roles = roleRepository.findAllByNameIn(Arrays.asList("ROLE_CLIENT"));
     return userRepository.countUsersByRolesIn(roles);

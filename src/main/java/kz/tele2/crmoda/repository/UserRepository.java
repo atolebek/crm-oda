@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
   @Transactional
   void deleteByUsername(String username);
 
-  @Query("SELECT u FROM User u")
+  @Query("SELECT u FROM User u ")
   List<User> getAllUsers();
 
   int countUsersByRolesIn(List<Role> roles);
