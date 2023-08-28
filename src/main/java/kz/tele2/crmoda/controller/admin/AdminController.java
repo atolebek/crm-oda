@@ -28,7 +28,7 @@ public class AdminController {
         return rentRepository.findAll();
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public Rent getRent(@PathVariable Long id){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return rentRepository.getById(id);
