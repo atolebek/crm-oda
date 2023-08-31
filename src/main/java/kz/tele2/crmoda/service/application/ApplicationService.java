@@ -1,13 +1,15 @@
 package kz.tele2.crmoda.service.application;
 
 import kz.tele2.crmoda.dto.request.SignDocumentRequest;
-import kz.tele2.crmoda.dto.request.electricity.SendElectricityRequest;
 import kz.tele2.crmoda.enums.ApplicationName;
 import kz.tele2.crmoda.enums.ApplicationType;
 import kz.tele2.crmoda.enums.UserType;
 import kz.tele2.crmoda.model.Application;
 import kz.tele2.crmoda.model.onec.Counterparty;
+import kz.tele2.crmoda.report.ReportGenerator;
 import kz.tele2.crmoda.repository.ApplicationRepository;
+import kz.tele2.crmoda.repository.ConditionRepository;
+import kz.tele2.crmoda.repository.CounterpartyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import java.time.LocalDate;
 public class ApplicationService {
 
     private final ApplicationRepository applicationRepository;
+    private final CounterpartyRepository counterpartyRepository;
+    private final ConditionRepository conditionRepository;
 
     public Application createApplicationForPayment(SignDocumentRequest request, Counterparty counterparty,
                                                    UserType userType, ApplicationType type) {
@@ -42,6 +46,11 @@ public class ApplicationService {
                                 .applicationId(request.getUserDefinedUniqueCompletionCertificateId())
                                 .build());
         return application;
+    }
+
+    public byte[] renderReport(String contractCode, String bts, String contractSum, LocalDate startDate, Boolean signed) {
+        Counterparty counterparty = counterpartyRepository.findFirstByCode(contractCode);
+        return new ReportGenerator().generateReport(counterparty, bts, contractSum, startDate, signed);
     }
 
     public Application save(Application application) {

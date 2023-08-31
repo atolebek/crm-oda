@@ -7,4 +7,6 @@ public interface CounterpartyRepository extends JpaRepository<Counterparty, Long
 
     Counterparty findByName(String name);
 
+    Counterparty findFirstByCode(String code);
+
 }
