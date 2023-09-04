@@ -9,6 +9,8 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,8 +22,8 @@ import java.util.Map;
 public class ReportGenerator {
     public byte[] generateReport(Counterparty counterparty, String site, String sum, LocalDate start, Boolean signed) {
         try {
-            URL jrxmlUrl = getClass().getResource("completionCertificate.jrxml");
-            JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlUrl.getPath());
+            InputStream jrxmlUrl = getClass().getResourceAsStream("/completionCertificate.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlUrl);
 
             // Prepare data source (replace with your own data)
             List<Map<String, Object>> dataSource = new ArrayList<>();
