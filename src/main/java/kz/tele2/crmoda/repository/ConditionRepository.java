@@ -35,4 +35,7 @@ public interface ConditionRepository extends JpaRepository<Condition, Integer> {
             "AND c.contract_code = :contractCode " +
             "AND c.site = :site")
     Condition getFirstByCounterpartyAndTypeAndSiteActiveConditionsByCounterpartyAndTypeAndSite(Site site, String contractCode, Counterparty counterparty, String type, LocalDate now);
+
+    @Query(value = "SELECT c FROM Condition c WHERE c.contract_code = :contractCode")
+    List<Condition> getConditionByContract_code(String contractCode);
 }

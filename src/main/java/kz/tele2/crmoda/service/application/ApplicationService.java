@@ -5,6 +5,7 @@ import kz.tele2.crmoda.enums.ApplicationName;
 import kz.tele2.crmoda.enums.ApplicationType;
 import kz.tele2.crmoda.enums.UserType;
 import kz.tele2.crmoda.model.Application;
+import kz.tele2.crmoda.model.onec.Condition;
 import kz.tele2.crmoda.model.onec.Counterparty;
 import kz.tele2.crmoda.report.ReportGenerator;
 import kz.tele2.crmoda.repository.ApplicationRepository;
@@ -20,7 +21,6 @@ import java.time.LocalDate;
 public class ApplicationService {
 
     private final ApplicationRepository applicationRepository;
-    private final CounterpartyRepository counterpartyRepository;
     private final ConditionRepository conditionRepository;
 
     public Application createApplicationForPayment(SignDocumentRequest request, Counterparty counterparty,
@@ -49,8 +49,8 @@ public class ApplicationService {
     }
 
     public byte[] renderReport(String contractCode, String bts, String contractSum, LocalDate startDate, Boolean signed) {
-        Counterparty counterparty = counterpartyRepository.findFirstByCode(contractCode);
-        return new ReportGenerator().generateReport(counterparty, bts, contractSum, startDate, signed);
+        Condition condition = conditionRepository.getConditionByContract_code(contractCode).get(0);
+        return new ReportGenerator().generateReport(condition.getCounterparty(), bts, contractSum, startDate, signed);
     }
 
     public Application save(Application application) {
