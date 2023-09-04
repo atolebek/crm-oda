@@ -20,7 +20,7 @@ import java.util.Map;
 public class ReportGenerator {
     public byte[] generateReport(Counterparty counterparty, String site, String sum, LocalDate start, Boolean signed) {
         try {
-            URL jrxmlUrl = getClass().getResource("/report/completionCertificate.jrxml");
+            URL jrxmlUrl = getClass().getResource("completionCertificate.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlUrl.getPath());
 
             // Prepare data source (replace with your own data)
